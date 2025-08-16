@@ -1,5 +1,5 @@
 import React from "react";
-import {View,Text,StyleSheet,TouchableOpacity,Image, Dimensions} from "react-native"
+import {View,Text,StyleSheet,TouchableOpacity,Image, Dimensions,Button} from "react-native"
 
 const windowWhidth = Dimensions.get('window').width;
 
@@ -10,7 +10,7 @@ export default function HomeScreen ({navigation}) {
          <Text style={styles.saudacao}> Ótimo Dia !</Text>
          <Text> Como deseja acessar?  </Text>
 
-         <TouchableOpacity style={styles.button1}>
+         <TouchableOpacity style={styles.button1} >
 
          <Image  style={styles.icongoogle} source={require("../../assets/Google.png")}/> 
 
@@ -19,11 +19,13 @@ export default function HomeScreen ({navigation}) {
          </TouchableOpacity>
 
          
-         <TouchableOpacity style={styles.button2}>
+         <TouchableOpacity style={styles.button2} onPress={ () => navigation.navigate("LoginScreen")}>
 
          <Text> Outras opções </Text> 
         
          </TouchableOpacity>
+
+         
                 
            
         </View>
