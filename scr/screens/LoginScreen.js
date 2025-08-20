@@ -1,65 +1,83 @@
-import React from 'react';
-import { TextInput, View, Text, Button, StyleSheet, Dimensions, TouchableOpacity, secureTextEntry, } from 'react-native';
+import React, { useState } from 'react';
+import { View, TextInput, TouchableOpacity, StyleSheet,Text} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+ 
+export default function InputSenha() {
+  const [senha, setSenha] = useState('');
+  const [mostrarSenha, setMostrarSenha] = useState(false);
+ 
+  return (
+    <View style={styles.container}>
+       <Text style={styles.acesso}> Acesse</Text>
+       <Text> com E-mail e senha  </Text>
 
-
-
-export default function LoginScreen({ navigation }) {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Faça Seu Login🔐</Text>
-            <TextInput style={styles.input} placeholder="Usuário" placeholderTextColor={"black"} ></TextInput>
-            <TextInput style={styles.input} placeholder="Senha" placeholderTextColor={"black"} secureTextEntry={true}></TextInput>
-            <TouchableOpacity style={styles.login}><Text style={styles.Textlogin}>Login</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.voltar} onPress={() => navigation.navigate('Home')}><Text style={styles.Textlogin}>Voltar</Text></TouchableOpacity>
-        </View>
-    );
-
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#D3D3D3', 
-    },
-    input: {
+      <Text>E-mail</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Digite seu E-mail"
         
-        width: 250,
-        margin: 15,
-        borderWidth: 2,
-        borderRadius: 20,
-        color: '#ff06f',
-        borderColor: "#ff06f",
-    },
-    login: {
-        alignSelf: 'center',
-        width: 80,
-        height: 40,
-        color: "#F8F8FF",
-        borderRadius: 50,
-        marginTop: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: "#B8860B",
+       
+      />
+      <Text>Senha</Text>
+      <TextInput
+        style={styles.input}
+        placeholder ="Digite sua senha"
+        value={senha}
+        onChangeText={setSenha}
+        secureTextEntry={!mostrarSenha}
+      />
+ 
+      <TouchableOpacity
+        style={styles.icon}
+        onPress={() => setMostrarSenha(!mostrarSenha)}
+      >
+        <Icon
+          name={mostrarSenha ? 'visibility' : 'visibility-off'}
+          size={24}
+          color="#666"
+        />
+      </TouchableOpacity>
+    </View>
+  );
+}
+ 
+const styles = StyleSheet.create({
+  container: {
+    position: 'relative',
+    width: '100%',
+    marginVertical: 10,
+    marginLeft: 20,
 
-    },
-    voltar: {
-        alignSelf: 'center',
-        width: 80,
-        height: 40,
-        borderRadius: 50,
-        marginTop: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: "#B8860B",
+    
+    
 
-    },
-    title: {
-        alignSelf: 'center',
-        fontSize: 35,
-        margin: 50,
-        color: "#ff06f",
-        fontWeight: "bold"
-    },
-});
+  },
+
+  acesso:{
+
+    fontSize:36,
+    marginBottom:10, 
+    
+      
+   },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 4,
+    
+    paddingHorizontal: 40, // espaço para o ícone
+    fontSize: 16,
+    marginBottom:20,
+    width:330,
+    paddingLeft:20,
+    
+    
+  },
+  icon: {
+    position: 'absolute',
+    right: 10,
+    top: '50%',
+    transform: [{ translateY: -12 }],
+    marginRight: 10
+  },
+})
